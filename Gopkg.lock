@@ -18,6 +18,14 @@
   version = "v2.15"
 
 [[projects]]
+  digest = "1:fa6d7a5a592ad4052351be50fe4a66f9974a203eff6b675841ab64d99d17bb8e"
+  name = "github.com/magiconair/properties"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "869a5592420f4ff6ebf74500b5c658b29d973172"
+  version = "v1.8.6"
+
+[[projects]]
   digest = "1:bfd19f00967e10367aaaf4b09545873750ac3cb9762d66243e9b7954327cc113"
   name = "github.com/mattn/go-colorable"
   packages = ["."]
@@ -47,6 +55,9 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/inconshreveable/log15"]
+  input-imports = [
+    "github.com/inconshreveable/log15",
+    "github.com/magiconair/properties",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1

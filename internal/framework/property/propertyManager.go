@@ -20,7 +20,7 @@ func init() {
 	PropertyManagerInstance = PropertyManager{properties: *property, cliArgs: getArgs()}
 }
 
-func GetPropertyManager() PropertyManager {
+func GetPropertyManagerInstance() PropertyManager {
 	return PropertyManagerInstance
 }
 

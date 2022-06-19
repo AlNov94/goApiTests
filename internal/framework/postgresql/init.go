@@ -4,18 +4,19 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/inconshreveable/log15"
+	"goApiTests/goApiTests/internal/framework/property"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	. "restApiTests/framework/property"
 )
 
 var dsn string
 
 func init() {
+	propertyManager := property.GetPropertyManagerInstance()
 	dsn = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=%s",
-		GetProperty("db.host"), GetProperty("db.user"), GetProperty("db.password"),
-		GetProperty("db.name"), GetProperty("db.port"), GetProperty("db.sslmode"),
-		GetProperty("db.timezone"))
+		propertyManager.GetProperty("db.host"), propertyManager.GetProperty("db.user"), propertyManager.GetProperty("db.password"),
+		propertyManager.GetProperty("db.name"), propertyManager.GetProperty("db.port"), propertyManager.GetProperty("db.sslmode"),
+		propertyManager.GetProperty("db.timezone"))
 	_, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log15.Debug(err.Error())

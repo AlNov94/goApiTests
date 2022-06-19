@@ -24,6 +24,10 @@
 #   go-tests = true
 #   unused-packages = true
 
+ignored = [
+  "gorm.io/gorm",
+  "gorm.io/driver/postgres"
+]
 
 [prune]
   go-tests = true

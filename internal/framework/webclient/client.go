@@ -19,11 +19,11 @@ func NewClient(decoder *decoders.Decoder, encoder *encoders.Encoder) Client {
 	return Client{decoder: *decoder, encoder: *encoder, requestFactory: getrequestFactoryInstance()}
 }
 
-func (client Client) doRequest(r *Request, body *any, httpMethod string) Response {
-	req := client.requestFactory.createRequest(r, httpMethod, &client)
+func (client Client) DoRequest(httpMethod string, request *Request, responseBody *any) Response {
+	req := client.requestFactory.createRequest(request, httpMethod, &client)
 	httpClient := &http.Client{}
 	resp, err := httpClient.Do(req)
-	reqBodyOut, _ := client.encoder.ToOutput(r.body, "", "  ")
+	reqBodyOut, _ := client.encoder.ToOutput(request.body, "", "  ")
 	log15.Debug(fmt.Sprintf("Executed %s %s body = %s cookies = %s headers = %s", httpMethod, req.URL, reqBodyOut, req.Cookies(), req.Header))
 	if resp != nil {
 		defer resp.Body.Close()

@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
-	"goApiTests/goApiTests/framework/webclient/encoders"
-
 	"github.com/inconshreveable/log15"
+	"goApiTests/goApiTests/internal/framework/webclient/encoders"
 )
 
 func main() {

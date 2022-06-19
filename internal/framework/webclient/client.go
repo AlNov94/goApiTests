@@ -3,8 +3,8 @@ package webclient
 import (
 	"fmt"
 	"github.com/inconshreveable/log15"
-	"goApiTests/goApiTests/framework/webclient/decoders"
-	"goApiTests/goApiTests/framework/webclient/encoders"
+	"goApiTests/goApiTests/internal/framework/webclient/decoders"
+	"goApiTests/goApiTests/internal/framework/webclient/encoders"
 	"io"
 	"net/http"
 )

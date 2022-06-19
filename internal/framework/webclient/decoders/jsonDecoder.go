@@ -2,8 +2,8 @@ package decoders
 
 import "encoding/json"
 
-type jsonDecoder struct{}
+type JsonDecoder struct{}
 
-func (jsonDecoder) Decode(data []byte, v any) error {
+func (JsonDecoder) Decode(data []byte, v any) error {
 	return json.Unmarshal(data, v)
 }

@@ -14,7 +14,7 @@ func getrequestFactoryInstance() requestFactory {
 	return requestFactoryInstance
 }
 
-func (requestFactory requestFactory) createRequest(r *Request, httpMethod string, client *Client) *http.Request {
+func (requestFactory requestFactory) createRequest(r *Request, httpMethod string, client *webClient) *http.Request {
 	postBody, err := client.encoder.Encode(r.body)
 	if err != nil {
 		panic(err)

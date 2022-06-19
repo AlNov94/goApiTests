@@ -2,24 +2,25 @@ package webclient
 
 import (
 	"fmt"
-	"github.com/inconshreveable/log15"
 	"goApiTests/goApiTests/internal/framework/webclient/decoders"
 	"goApiTests/goApiTests/internal/framework/webclient/encoders"
 	"io"
 	"net/http"
+
+	"github.com/inconshreveable/log15"
 )
 
-type Client struct {
+type webClient struct {
 	decoder        decoders.Decoder
 	encoder        encoders.Encoder
 	requestFactory requestFactory
 }
 
-func NewClient(decoder *decoders.Decoder, encoder *encoders.Encoder) Client {
-	return Client{decoder: *decoder, encoder: *encoder, requestFactory: getrequestFactoryInstance()}
+func NewClient(decoder decoders.Decoder, encoder encoders.Encoder) webClient {
+	return webClient{decoder: decoder, encoder: encoder, requestFactory: getrequestFactoryInstance()}
 }
 
-func (client Client) DoRequest(httpMethod string, request *Request, responseBody *any) Response {
+func (client webClient) DoRequest(httpMethod string, request *Request, responseBody any) Response {
 	req := client.requestFactory.createRequest(request, httpMethod, &client)
 	httpClient := &http.Client{}
 	resp, err := httpClient.Do(req)

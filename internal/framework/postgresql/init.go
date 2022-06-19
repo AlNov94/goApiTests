@@ -9,15 +9,24 @@ import (
 	"gorm.io/gorm"
 )
 
-var dsn string
+type connectionManager struct {
+	dsn string
+}
+
+var instance connectionManager
+
+func GetConnectionManager() connectionManager {
+	return instance
+}
 
 func init() {
 	propertyManager := property.GetPropertyManagerInstance()
-	dsn = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=%s",
+	cm := connectionManager{}
+	cm.dsn = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=%s",
 		propertyManager.GetProperty("db.host"), propertyManager.GetProperty("db.user"), propertyManager.GetProperty("db.password"),
 		propertyManager.GetProperty("db.name"), propertyManager.GetProperty("db.port"), propertyManager.GetProperty("db.sslmode"),
 		propertyManager.GetProperty("db.timezone"))
-	_, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	_, err := gorm.Open(postgres.Open(cm.dsn), &gorm.Config{})
 	if err != nil {
 		log15.Debug(err.Error())
 		panic(err)
@@ -25,8 +34,8 @@ func init() {
 	log15.Debug("Connected to database")
 }
 
-func GetConnection() *gorm.DB {
-	sqlDB, _ := sql.Open("pgx", dsn)
+func (cm connectionManager) GetConnection() *gorm.DB {
+	sqlDB, _ := sql.Open("pgx", cm.dsn)
 	gormDB, err := gorm.Open(postgres.New(postgres.Config{
 		Conn: sqlDB,
 	}), &gorm.Config{})

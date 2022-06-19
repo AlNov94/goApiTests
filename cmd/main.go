@@ -8,5 +8,6 @@ import (
 
 func main() {
 	fmt.Println(1111)
-	log15.Debug("111", encoders.JsonEncoder{})
+	fmt.Println(encoders.JsonEncoder{})
+	log15.Debug("111")
 }

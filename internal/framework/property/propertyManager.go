@@ -8,28 +8,28 @@ import (
 	"strings"
 )
 
-var PropertyManagerInstance PropertyManager
+var PropertyManagerInstance propertyManager
 
-type PropertyManager struct {
+type propertyManager struct {
 	properties properties.Properties
 	cliArgs    map[string]string
 }
 
 func init() {
 	property := properties.MustLoadFile(os.Getenv("GOPATH")+"/src/restApiTests/application.properties", properties.UTF8)
-	PropertyManagerInstance = PropertyManager{properties: *property, cliArgs: getArgs()}
+	PropertyManagerInstance = propertyManager{properties: *property, cliArgs: getArgs()}
 }
 
-func GetPropertyManagerInstance() PropertyManager {
+func GetPropertyManagerInstance() propertyManager {
 	return PropertyManagerInstance
 }
 
-func (propertyManager PropertyManager) GetProperty(propertyName string) string {
-	property, ok := propertyManager.cliArgs[propertyName]
+func (pm propertyManager) GetProperty(propertyName string) string {
+	property, ok := pm.cliArgs[propertyName]
 	if ok == false {
 		return property
 	}
-	properties, ok := propertyManager.properties.Get(propertyName)
+	properties, ok := pm.properties.Get(propertyName)
 	if ok == false {
 		log15.Debug(fmt.Sprintf("Error due to reading property %s", propertyName))
 	}

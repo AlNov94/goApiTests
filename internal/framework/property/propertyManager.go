@@ -25,12 +25,12 @@ func GetPropertyManagerInstance() PropertyManager {
 }
 
 func (propertyManager PropertyManager) GetProperty(propertyName string) string {
-	if len(propertyManager.cliArgs[propertyName]) != 0 {
-		fmt.Println(propertyManager.cliArgs[propertyName])
-		return propertyManager.cliArgs[propertyName]
+	property, ok := propertyManager.cliArgs[propertyName]
+	if ok == false {
+		return property
 	}
-	properties, err := propertyManager.properties.Get(propertyName)
-	if err != true {
+	properties, ok := propertyManager.properties.Get(propertyName)
+	if ok == false {
 		log15.Debug(fmt.Sprintf("Error due to reading property %s", propertyName))
 	}
 	return properties

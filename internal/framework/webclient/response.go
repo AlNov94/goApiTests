@@ -17,17 +17,18 @@ func (r Response) Header(headerName string) string {
 }
 
 func (r Response) HeaderAt(headerName string, index int) string {
-	if len(r.headers[headerName]) == 0 {
+	headers, ok := r.headers[headerName]
+	if ok == false {
 		errMsg := fmt.Sprintf("Header %s not exist", headerName)
 		log15.Debug(errMsg)
 		panic(errMsg)
 	}
-	if len(r.headers[headerName]) < index+1 {
+	if len(headers) < index+1 {
 		errMsg := fmt.Sprintf("Header %s with index %d not exist", headerName, index)
 		log15.Debug(errMsg)
 		panic(errMsg)
 	}
-	return r.headers[headerName][index]
+	return headers[index]
 }
 
 func (r Response) Cookie(cookieName string) string {

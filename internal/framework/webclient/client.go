@@ -29,7 +29,7 @@ func (client webClient) DoRequest(httpMethod string, request *Request, responseB
 	if resp != nil {
 		defer resp.Body.Close()
 		body, _ := io.ReadAll(resp.Body)
-		client.decoder.Decode(body, &body)
+		client.decoder.Decode(body, &responseBody)
 		respHeaders := client.requestFactory.headersToMap(resp)
 		respCookies := client.requestFactory.cookieToMap(resp)
 		log15.Debug(fmt.Sprintf("Response status code %d body = %s headers = %v cookies = %v", resp.StatusCode, string(body), respHeaders, respCookies))

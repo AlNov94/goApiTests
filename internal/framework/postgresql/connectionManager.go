@@ -26,7 +26,6 @@ func init() {
 		propertyManager.GetProperty("db.name"), propertyManager.GetProperty("db.port"), propertyManager.GetProperty("db.sslmode"),
 		propertyManager.GetProperty("db.timezone"))
 	instance = connectionManager{dsn: dsn}
-	log15.Debug(instance.dsn)
 	_, err := gorm.Open(postgres.Open(instance.dsn), &gorm.Config{})
 	if err != nil {
 		log15.Debug(err.Error())

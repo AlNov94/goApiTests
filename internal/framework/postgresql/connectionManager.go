@@ -21,12 +21,13 @@ func GetConnectionManager() connectionManager {
 
 func init() {
 	propertyManager := property.GetPropertyManagerInstance()
-	cm := connectionManager{}
-	cm.dsn = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=%s",
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=%s",
 		propertyManager.GetProperty("db.host"), propertyManager.GetProperty("db.user"), propertyManager.GetProperty("db.password"),
 		propertyManager.GetProperty("db.name"), propertyManager.GetProperty("db.port"), propertyManager.GetProperty("db.sslmode"),
 		propertyManager.GetProperty("db.timezone"))
-	_, err := gorm.Open(postgres.Open(cm.dsn), &gorm.Config{})
+	instance = connectionManager{dsn: dsn}
+	log15.Debug(instance.dsn)
+	_, err := gorm.Open(postgres.Open(instance.dsn), &gorm.Config{})
 	if err != nil {
 		log15.Debug(err.Error())
 		panic(err)

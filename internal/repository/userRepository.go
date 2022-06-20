@@ -7,7 +7,7 @@ import (
 
 type userRepository struct{}
 
-var userRepositoryInstance userRepository
+var userRepositoryInstance userRepository = userRepository{}
 
 func GetUserRepository() userRepository {
 	return userRepositoryInstance

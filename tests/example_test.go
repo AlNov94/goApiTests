@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"github.com/stretchr/testify/assert"
 	"goApiTests/goApiTests/internal/api"
 	"goApiTests/goApiTests/internal/dto"
 	"goApiTests/goApiTests/internal/repository"
@@ -8,16 +9,14 @@ import (
 )
 
 func TestDatabase(t *testing.T) {
+	assert := assert.New(t)
 	u := repository.GetUserRepository().FindUserByID(1)
-	if u.FirstName != "Joe" {
-		t.Error("Expected Joe but was ", u.FirstName)
-	}
+	assert.Equal(u.FirstName, "Joe")
 }
 
 func TestApi(t *testing.T) {
+	assert := assert.New(t)
 	var u dto.UserResponse
 	api.GetMockService().GetMockUser("1", &u)
-	if u.FirstName != "Joe" {
-		t.Error("Expected Joe but was ", u.FirstName)
-	}
+	assert.Equal(u.FirstName, "Joe")
 }

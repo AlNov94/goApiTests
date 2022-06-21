@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  digest = "1:ffe9824d294da03b391f44e1ae8281281b4afc1bdaa9588c9097785e3af10cec"
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  pruneopts = "UT"
+  revision = "8991bc29aa16c548c550c7ff78260e27b9ab7c73"
+  version = "v1.1.1"
+
+[[projects]]
   digest = "1:c1795e3e820acf3dd3a17ae97d752a6498d2bf6ecb81a06cb4e13169f72e5286"
   name = "github.com/go-stack/stack"
   packages = ["."]
@@ -42,6 +50,22 @@
   version = "v0.0.14"
 
 [[projects]]
+  digest = "1:0028cb19b2e4c3112225cd871870f2d9cf49b9b4276531f03438a88e94be86fe"
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  pruneopts = "UT"
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
+  digest = "1:47b565d873ecca0f809610cd107995a41eb8a349c434c2e7cabd547a8f6fb1e5"
+  name = "github.com/stretchr/testify"
+  packages = ["assert"]
+  pruneopts = "UT"
+  revision = "48391ba5eb8c5f49132138e67ec112d180b88f63"
+  version = "v1.7.4"
+
+[[projects]]
   branch = "master"
   digest = "1:c636e0144c6bbc502d98ccd9b568ec4c8aec2e745c3e0a77a9367532a01b16d7"
   name = "golang.org/x/sys"
@@ -52,12 +76,21 @@
   pruneopts = "UT"
   revision = "4f61da869c0cac4042c389774ce3a1627c48b555"
 
+[[projects]]
+  digest = "1:0d58f1f9964495f627de70f2db37d14c39dca5ee41f49739ea7dffcbc84dd84d"
+  name = "gopkg.in/yaml.v3"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "f6f7691b1fdeb513f56608cd2c32c51f8194bf51"
+  version = "v3.0.1"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
     "github.com/inconshreveable/log15",
     "github.com/magiconair/properties",
+    "github.com/stretchr/testify/assert",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

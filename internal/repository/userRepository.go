@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"goApiTests/goApiTests/internal/entity"
-	"goApiTests/goApiTests/internal/framework/postgresql"
+	"goApiTests/internal/entity"
+	"goApiTests/internal/framework/postgresql"
 )
 
 type userRepository struct{}

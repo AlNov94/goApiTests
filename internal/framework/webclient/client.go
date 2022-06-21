@@ -2,8 +2,8 @@ package webclient
 
 import (
 	"fmt"
-	"goApiTests/goApiTests/internal/framework/webclient/decoders"
-	"goApiTests/goApiTests/internal/framework/webclient/encoders"
+	"goApiTests/internal/framework/webclient/decoders"
+	"goApiTests/internal/framework/webclient/encoders"
 	"io"
 	"net/http"
 

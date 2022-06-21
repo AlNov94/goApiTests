@@ -1,11 +1,11 @@
 package api
 
 import (
-	"goApiTests/goApiTests/internal/dto"
-	"goApiTests/goApiTests/internal/framework/webclient"
-	"goApiTests/goApiTests/internal/framework/webclient/decoders"
-	"goApiTests/goApiTests/internal/framework/webclient/encoders"
-	"goApiTests/goApiTests/internal/framework/webclient/webClientEnums"
+	"goApiTests/internal/dto"
+	"goApiTests/internal/framework/webclient"
+	"goApiTests/internal/framework/webclient/decoders"
+	"goApiTests/internal/framework/webclient/encoders"
+	"goApiTests/internal/framework/webclient/webClientEnums"
 )
 
 type mockService struct{}

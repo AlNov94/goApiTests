@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/inconshreveable/log15"
-	"goApiTests/goApiTests/internal/framework/property"
+	"goApiTests/internal/framework/property"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

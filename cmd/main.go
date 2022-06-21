@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"goApiTests/goApiTests/internal/api"
-	"goApiTests/goApiTests/internal/dto"
-	"goApiTests/goApiTests/internal/framework/webclient/encoders"
-	"goApiTests/goApiTests/internal/repository"
+	"goApiTests/internal/api"
+	"goApiTests/internal/dto"
+	"goApiTests/internal/framework/webclient/encoders"
+	"goApiTests/internal/repository"
 
 	"github.com/inconshreveable/log15"
 )

@@ -5,9 +5,9 @@ import (
 	"github.com/ozontech/allure-go/pkg/framework/runner"
 	"github.com/ozontech/allure-go/pkg/framework/suite"
 	"github.com/stretchr/testify/assert"
-	"goApiTests/goApiTests/internal/api"
-	"goApiTests/goApiTests/internal/dto"
-	"goApiTests/goApiTests/internal/repository"
+	"goApiTests/internal/api"
+	"goApiTests/internal/dto"
+	"goApiTests/internal/repository"
 	"os"
 	"testing"
 )

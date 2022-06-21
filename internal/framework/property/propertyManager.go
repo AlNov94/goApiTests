@@ -16,7 +16,7 @@ type propertyManager struct {
 }
 
 func init() {
-	property := properties.MustLoadFile(os.Getenv("GOPATH")+"\\src\\goApiTests\\goApiTests\\application.properties", properties.UTF8)
+	property := properties.MustLoadFile(os.Getenv("GOPATH")+"\\src\\goApiTests\\application.properties", properties.UTF8)
 	PropertyManagerInstance = propertyManager{properties: *property, cliArgs: getArgs()}
 }
 

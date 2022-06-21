@@ -17,11 +17,6 @@ type TestSuite struct {
 }
 
 func TestRunSuite(t *testing.T) {
-	t.Parallel()
-	suite.RunSuite(t, new(TestSuite))
-}
-
-func TestSample(t *testing.T) {
 	runner.Run(t, "Just Link", func(t provider.T) {
 		t.SetIssue("https://pkg.go.dev/github.com/stretchr/testify")
 	})
@@ -30,6 +25,8 @@ func TestSample(t *testing.T) {
 		_ = os.Setenv("ALLURE_ISSUE_PATTERN", "https://pkg.go.dev/github.com/stretchr/%s")
 		t.SetIssue("testify")
 	})
+	t.Parallel()
+	suite.RunSuite(t, new(TestSuite))
 }
 
 func (ts *TestSuite) TestDatabase(t provider.T) {

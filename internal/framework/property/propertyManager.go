@@ -26,11 +26,11 @@ func GetPropertyManagerInstance() propertyManager {
 
 func (pm propertyManager) GetProperty(propertyName string) string {
 	property, ok := pm.cliArgs[propertyName]
-	if ok == true {
+	if ok {
 		return property
 	}
 	properties, ok := pm.properties.Get(propertyName)
-	if ok == false {
+	if !ok {
 		log15.Debug(fmt.Sprintf("Error due to reading property %s", propertyName))
 	}
 	return properties

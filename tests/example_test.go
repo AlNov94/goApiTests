@@ -38,7 +38,7 @@ func (ts *TestSuite) TestDatabase(t provider.T) {
 	lock.Lock()
 	log15.Debug("Start TestDatabase")
 	assert := assert.New(t)
-	u := repository.GetUserRepository().FindUserByID(1)
+	u := repository.GetUserRepository().FindUserById(1)
 	assert.Equal(u.FirstName, "Joe")
 	log15.Debug("Finish TestDatabase")
 	lock.Unlock()

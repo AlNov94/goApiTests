@@ -13,7 +13,7 @@ func GetUserRepository() userRepository {
 	return userRepositoryInstance
 }
 
-func (ur userRepository) FindUserByID(id int) entity.User {
+func (ur userRepository) FindUserById(id int) entity.User {
 	var user entity.User
 	postgresql.GetConnectionManager().GetConnection().Where("id = ?", id).Find(&user)
 	postgresql.GetConnectionManager().GetConnection().Model(&user).Association("UserProperties").Find(&user.UserProperties)

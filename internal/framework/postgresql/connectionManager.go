@@ -3,8 +3,9 @@ package postgresql
 import (
 	"database/sql"
 	"fmt"
+	"goApiTests/internal/framework/config"
+
 	"github.com/inconshreveable/log15"
-	"goApiTests/internal/framework/property"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -20,7 +21,7 @@ func GetConnectionManager() connectionManager {
 }
 
 func init() {
-	propertyManager := property.GetPropertyManagerInstance()
+	propertyManager := config.GetConfigInstance()
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=%s",
 		propertyManager.GetProperty("db.host"), propertyManager.GetProperty("db.user"), propertyManager.GetProperty("db.password"),
 		propertyManager.GetProperty("db.name"), propertyManager.GetProperty("db.port"), propertyManager.GetProperty("db.sslmode"),

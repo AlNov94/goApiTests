@@ -1,30 +1,31 @@
-package property
+package config
 
 import (
 	"fmt"
-	"github.com/inconshreveable/log15"
-	"github.com/magiconair/properties"
 	"os"
 	"strings"
+
+	"github.com/inconshreveable/log15"
+	"github.com/magiconair/properties"
 )
 
-var PropertyManagerInstance propertyManager
+var ConfigInstance config
 
-type propertyManager struct {
+type config struct {
 	properties properties.Properties
 	cliArgs    map[string]string
 }
 
 func init() {
 	property := properties.MustLoadFile(os.Getenv("GOPATH")+"\\src\\goApiTests\\application.properties", properties.UTF8)
-	PropertyManagerInstance = propertyManager{properties: *property, cliArgs: getArgs()}
+	ConfigInstance = config{properties: *property, cliArgs: getArgs()}
 }
 
-func GetPropertyManagerInstance() propertyManager {
-	return PropertyManagerInstance
+func GetConfigInstance() config {
+	return ConfigInstance
 }
 
-func (pm propertyManager) GetProperty(propertyName string) string {
+func (pm config) GetProperty(propertyName string) string {
 	property, ok := pm.cliArgs[propertyName]
 	if ok {
 		return property

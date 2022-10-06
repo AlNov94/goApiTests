@@ -9,7 +9,7 @@ import (
 	"github.com/magiconair/properties"
 )
 
-var ConfigInstance config
+var configInstance config
 
 type config struct {
 	properties properties.Properties
@@ -18,11 +18,11 @@ type config struct {
 
 func init() {
 	property := properties.MustLoadFile(os.Getenv("GOPATH")+"\\src\\goApiTests\\application.properties", properties.UTF8)
-	ConfigInstance = config{properties: *property, cliArgs: getArgs()}
+	configInstance = config{properties: *property, cliArgs: getArgs()}
 }
 
-func GetConfigInstance() config {
-	return ConfigInstance
+func GetConfig() config {
+	return configInstance
 }
 
 func (pm config) GetProperty(propertyName string) string {

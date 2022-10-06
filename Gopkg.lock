@@ -2,12 +2,31 @@
 
 
 [[projects]]
+  digest = "1:9e71d7e70f7a85f9567c188ad2200b37009a962059e6c23a69572ef1d03ffad1"
+  name = "github.com/dailymotion/allure-go"
+  packages = [
+    ".",
+    "severity",
+  ]
+  pruneopts = "UT"
+  revision = "7173d591f7c830602ab2a06ee383cab22d6f0485"
+  version = "v2.0"
+
+[[projects]]
   digest = "1:ffe9824d294da03b391f44e1ae8281281b4afc1bdaa9588c9097785e3af10cec"
   name = "github.com/davecgh/go-spew"
   packages = ["spew"]
   pruneopts = "UT"
   revision = "8991bc29aa16c548c550c7ff78260e27b9ab7c73"
   version = "v1.1.1"
+
+[[projects]]
+  digest = "1:bbc4aacabe6880bdbce849c64cb061b7eddf39f132af4ea2853ddd32f85fbec3"
+  name = "github.com/fatih/camelcase"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "44e46d280b43ec1531bb25252440e34f1b800b65"
+  version = "v1.0.0"
 
 [[projects]]
   digest = "1:c1795e3e820acf3dd3a17ae97d752a6498d2bf6ecb81a06cb4e13169f72e5286"
@@ -18,12 +37,12 @@
   version = "v1.8.1"
 
 [[projects]]
-  digest = "1:bbba45b09b3b502dc39afb36c3e9f89b9c2832b1f6d673277c97eade8875e462"
-  name = "github.com/google/uuid"
-  packages = ["."]
+  digest = "1:a8954a509a9f159c37d048627fdbc049eb4537008b03db07f81a3baace0d968c"
+  name = "github.com/gopherjs/gopherjs"
+  packages = ["js"]
   pruneopts = "UT"
-  revision = "44b5fee7c49cf3bcdf723f106b36d56ef13ccc88"
-  version = "v1.3.0"
+  revision = "fcf8e05a6f4fe7573b43c6bc65c2d1166fbd48cd"
+  version = "v1.17.2"
 
 [[projects]]
   digest = "1:5c56664d98f37f0ee54bf572b0b189a3910c34c31052fc7d58b282c449b079fb"
@@ -32,6 +51,14 @@
   pruneopts = "UT"
   revision = "b30bc20e4fd12cec79a9aae62e91cfcf458bd253"
   version = "v2.15"
+
+[[projects]]
+  digest = "1:4b63210654b1f2b664f74ec434a1bb1cb442b3d75742cc064a10808d1cca6361"
+  name = "github.com/jtolds/gls"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "b4936e06046bbecbb94cae9c18127ebe510a2cb9"
+  version = "v4.20"
 
 [[projects]]
   digest = "1:fa6d7a5a592ad4052351be50fe4a66f9974a203eff6b675841ab64d99d17bb8e"
@@ -58,27 +85,6 @@
   version = "v0.0.14"
 
 [[projects]]
-  digest = "1:7d3afaae6a55a27a717f7d9b2b3d9fe063b4375cd352b00c25d25c9ee85e101e"
-  name = "github.com/ozontech/allure-go"
-  packages = [
-    "pkg/allure",
-    "pkg/framework/asserts_wrapper/helper",
-    "pkg/framework/asserts_wrapper/wrapper",
-    "pkg/framework/core/allure_manager/adapter",
-    "pkg/framework/core/allure_manager/ctx",
-    "pkg/framework/core/allure_manager/manager",
-    "pkg/framework/core/allure_manager/testplan",
-    "pkg/framework/core/common",
-    "pkg/framework/core/constants",
-    "pkg/framework/provider",
-    "pkg/framework/runner",
-    "pkg/framework/suite",
-  ]
-  pruneopts = "UT"
-  revision = "72f49e4d60efdd92f4e3bc171ebac4c06283109b"
-  version = "v0.6.9"
-
-[[projects]]
   digest = "1:9e1d37b58d17113ec3cb5608ac0382313c5b59470b94ed97d0976e69c7022314"
   name = "github.com/pkg/errors"
   packages = ["."]
@@ -95,9 +101,13 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:47b565d873ecca0f809610cd107995a41eb8a349c434c2e7cabd547a8f6fb1e5"
+  digest = "1:a355004ce10aa083bf8e75ca188a147d24b60997d2bf1e5d7a8e396011f24819"
   name = "github.com/stretchr/testify"
-  packages = ["assert"]
+  packages = [
+    "assert",
+    "require",
+    "suite",
+  ]
   pruneopts = "UT"
   revision = "48391ba5eb8c5f49132138e67ec112d180b88f63"
   version = "v1.7.4"
@@ -125,12 +135,11 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/dailymotion/allure-go",
     "github.com/inconshreveable/log15",
     "github.com/magiconair/properties",
-    "github.com/ozontech/allure-go/pkg/framework/provider",
-    "github.com/ozontech/allure-go/pkg/framework/runner",
-    "github.com/ozontech/allure-go/pkg/framework/suite",
     "github.com/stretchr/testify/assert",
+    "github.com/stretchr/testify/suite",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

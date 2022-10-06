@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"goApiTests/internal/framework/config"
+	"fmt"
 	"os"
 	"testing"
 
@@ -13,6 +13,17 @@ type ApiTestSuite struct {
 }
 
 func TestApiTestSuite(t *testing.T) {
-	os.Setenv("ALLURE_RESULTS_PATH", config.GetConfig().GetProperty("ALLURE_RESULTS_PATH"))
+	directory := getDirectory()
+	os.RemoveAll(directory + "/allure-results")
+	os.Setenv("ALLURE_RESULTS_PATH", directory)
 	suite.Run(t, new(ApiTestSuite))
+}
+
+func getDirectory() string {
+	path, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	return path
 }

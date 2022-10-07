@@ -19,6 +19,6 @@ func GetMockService() mockService {
 func (ms mockService) GetMockUser(suffix string, responseBody *dto.UserResponse) webclient.Response {
 	queryParams := make(map[string]string)
 	queryParams["suffix"] = suffix
-	r := getBaseRequest().WithPath("/mock-user").WithQueryParams(queryParams)
-	return webclient.NewClient(decoders.JsonDecoder{}, encoders.JsonEncoder{}).DoRequest(webClientEnums.GET, &r, responseBody)
+	request := getBaseRequest().WithPath("/mock-user").WithQueryParams(queryParams)
+	return webclient.NewClient(decoders.JsonDecoder{}, encoders.JsonEncoder{}).DoRequest(webClientEnums.GET, &request, responseBody)
 }

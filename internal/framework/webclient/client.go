@@ -23,17 +23,17 @@ func NewClient(decoder decoders.Decoder, encoder encoders.Encoder) webClient {
 func (client webClient) DoRequest(httpMethod string, request *Request, responseBody any) Response {
 	req := client.requestFactory.createRequest(request, httpMethod, &client)
 	httpClient := &http.Client{}
-	resp, err := httpClient.Do(req)
-	reqBodyOut, _ := client.encoder.ToOutput(request.body, "", "  ")
-	log15.Debug(fmt.Sprintf("Executed %s %s body = %s cookies = %s headers = %s", httpMethod, req.URL, reqBodyOut, req.Cookies(), req.Header))
-	if resp != nil {
-		defer resp.Body.Close()
-		body, _ := io.ReadAll(resp.Body)
+	response, err := httpClient.Do(req)
+	requestBodyOutput, _ := client.encoder.ToOutput(request.body, "", "  ")
+	log15.Debug(fmt.Sprintf("Executed %s %s body = %s cookies = %s headers = %s", httpMethod, req.URL, requestBodyOutput, req.Cookies(), req.Header))
+	if response != nil {
+		defer response.Body.Close()
+		body, _ := io.ReadAll(response.Body)
 		client.decoder.Decode(body, &responseBody)
-		respHeaders := client.requestFactory.headersToMap(resp)
-		respCookies := client.requestFactory.cookieToMap(resp)
-		log15.Debug(fmt.Sprintf("Response status code %d body = %s headers = %v cookies = %v", resp.StatusCode, string(body), respHeaders, respCookies))
-		return Response{StatusCode: resp.StatusCode, headers: respHeaders, cookies: respCookies}
+		responseHeaders := client.requestFactory.headersToMap(response)
+		responseCookies := client.requestFactory.cookieToMap(response)
+		log15.Debug(fmt.Sprintf("Response status code %d body = %s headers = %v cookies = %v", response.StatusCode, string(body), responseHeaders, responseCookies))
+		return Response{StatusCode: response.StatusCode, headers: responseHeaders, cookies: responseCookies}
 	}
 	log15.Debug(err.Error())
 	return Response{StatusCode: 404, Error: err}

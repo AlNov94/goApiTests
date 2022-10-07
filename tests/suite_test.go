@@ -1,10 +1,10 @@
 package tests
 
 import (
-	"fmt"
 	"os"
 	"testing"
 
+	"github.com/inconshreveable/log15"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -22,7 +22,7 @@ func TestApiTestSuite(t *testing.T) {
 func getDirectory() string {
 	path, err := os.Getwd()
 	if err != nil {
-		fmt.Println(err)
+		log15.Debug(err.Error())
 		os.Exit(1)
 	}
 	return path

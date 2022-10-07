@@ -17,8 +17,8 @@ func (suite *ApiTestSuite) TestDatabase() {
 		lock.Lock()
 		defer lock.Unlock()
 		assert := assert.New(suite.T())
-		u := repository.GetUserRepository().FindUserById(1)
-		assert.Equal(u.FirstName, "John")
+		user := repository.GetUserRepository().FindUserById(1)
+		assert.Equal(user.FirstName, "John")
 	})
 }
 
@@ -27,8 +27,8 @@ func (suite *ApiTestSuite) TestApi() {
 		lock.Lock()
 		defer lock.Unlock()
 		assert := assert.New(suite.T())
-		var u dto.UserResponse
-		steps.GetMockUserStep("1", &u)
-		assert.Equal(u.FirstName, "Joe")
+		var userResponse dto.UserResponse
+		steps.GetMockUserStep("1", &userResponse)
+		assert.Equal(userResponse.FirstName, "Joe")
 	})
 }

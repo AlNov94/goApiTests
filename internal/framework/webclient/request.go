@@ -13,49 +13,49 @@ func NewRequest() Request {
 	return Request{}
 }
 
-func (r Request) WithBaseUrl(baseUrl string) Request {
-	r.baseUrl = baseUrl
-	return r
+func (request Request) WithBaseUrl(baseUrl string) Request {
+	request.baseUrl = baseUrl
+	return request
 }
 
-func (r Request) WithPath(path string) Request {
-	r.path = path
-	return r
+func (request Request) WithPath(path string) Request {
+	request.path = path
+	return request
 }
 
-func (r Request) WithHeaders(headers map[string]string) Request {
-	if len(r.headers) == 0 {
-		r.headers = headers
-		return r
+func (request Request) WithHeaders(headers map[string]string) Request {
+	if len(request.headers) == 0 {
+		request.headers = headers
+		return request
 	}
 	for k, v := range headers {
-		r.headers[k] = v
+		request.headers[k] = v
 	}
-	return r
+	return request
 }
 
-func (r Request) WithQueryParams(queryParams map[string]string) Request {
-	r.queryParams = queryParams
-	return r
+func (request Request) WithQueryParams(queryParams map[string]string) Request {
+	request.queryParams = queryParams
+	return request
 }
 
-func (r Request) WithBody(body interface{}) Request {
-	r.body = body
-	return r
+func (request Request) WithBody(body interface{}) Request {
+	request.body = body
+	return request
 }
 
-func (r Request) WithCookies(cookies map[string]string) Request {
-	r.cookies = cookies
-	return r
+func (request Request) WithCookies(cookies map[string]string) Request {
+	request.cookies = cookies
+	return request
 }
 
-func (r Request) AddCookies(cookies map[string]string) Request {
-	if len(r.cookies) == 0 {
-		r.cookies = cookies
-		return r
+func (request Request) AddCookies(cookies map[string]string) Request {
+	if len(request.cookies) == 0 {
+		request.cookies = cookies
+		return request
 	}
 	for k, v := range cookies {
-		r.cookies[k] = v
+		request.cookies[k] = v
 	}
-	return r
+	return request
 }

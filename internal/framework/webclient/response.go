@@ -12,12 +12,12 @@ type Response struct {
 	cookies    map[string]string
 }
 
-func (r Response) Header(headerName string) string {
-	return r.HeaderAt(headerName, 0)
+func (response Response) Header(headerName string) string {
+	return response.HeaderAt(headerName, 0)
 }
 
-func (r Response) HeaderAt(headerName string, index int) string {
-	headers, ok := r.headers[headerName]
+func (response Response) HeaderAt(headerName string, index int) string {
+	headers, ok := response.headers[headerName]
 	if ok == false {
 		errMsg := fmt.Sprintf("Header %s not exist", headerName)
 		log15.Debug(errMsg)
@@ -31,11 +31,11 @@ func (r Response) HeaderAt(headerName string, index int) string {
 	return headers[index]
 }
 
-func (r Response) Cookie(cookieName string) string {
-	if len(r.cookies[cookieName]) == 0 {
+func (response Response) Cookie(cookieName string) string {
+	if len(response.cookies[cookieName]) == 0 {
 		errMsg := fmt.Sprintf("Cookie %s not exist", cookieName)
 		log15.Debug(errMsg)
 		panic(errMsg)
 	}
-	return r.cookies[cookieName]
+	return response.cookies[cookieName]
 }

@@ -7,7 +7,7 @@ import (
 )
 
 func getBaseRequest() webclient.Request {
-	return webclient.NewRequest().WithBaseUrl("http://localhost:8090")
+	return webclient.NewRequest().WithBaseUrl("http://localhost:8090").WithContentType(webclient.JSON)
 }
 
 func getBaseClient() webclient.WebClient {

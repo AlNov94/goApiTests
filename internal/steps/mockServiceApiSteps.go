@@ -7,6 +7,8 @@ import (
 	"goApiTests/internal/steps/base"
 )
 
+//api steps example
+
 type MockServiceApiSteps struct{}
 
 func (mockserviceApiSteps MockServiceApiSteps) GetMockUserStep(suffix string, responseBody *dto.UserResponse) webclient.Response {

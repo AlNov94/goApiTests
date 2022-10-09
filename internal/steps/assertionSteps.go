@@ -11,14 +11,17 @@ import (
 
 type AssertionSteps struct{}
 
+// hard assert example
 func (assertionSteps AssertionSteps) CheckUserFirstName(t *testing.T, user entity.User, expectedName string) {
-	assert := assert.New(t)
-	baseSteps.SoftAssertEqualStep("Check user first name", assert, user.FirstName, expectedName)
-	baseSteps.AssertAll(t)
+	baseSteps.AssertEqualStep("Check user first name", t, user.FirstName, expectedName)
 }
 
+// soft assert example
 func (assertionSteps AssertionSteps) CheckUserResponseFirstName(t *testing.T, user dto.UserResponse, expectedName string) {
-	assert := assert.New(t)
-	baseSteps.SoftAssertEqualStep("Check get user response first name", assert, user.FirstName, expectedName)
-	baseSteps.AssertAll(t)
+	baseSteps.StepNoResult("Check user response",
+		func() {
+			assert := assert.New(t)
+			baseSteps.SoftAssertEqualStep("Check get user response first name", assert, user.FirstName, expectedName)
+			baseSteps.AssertAll(t)
+		})
 }

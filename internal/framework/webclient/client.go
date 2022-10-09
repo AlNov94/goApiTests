@@ -16,12 +16,16 @@ type WebClient struct {
 	requestFactory requestFactory
 }
 
+//create new webclient
+
 func NewClient(decoder decoders.Decoder, encoder encoders.Encoder) WebClient {
 	return WebClient{decoder: decoder, encoder: encoder, requestFactory: getRequestFactoryInstance()}
 }
 
-func (webClient WebClient) DoRequest(httpMethod string, request *Request, responseBody ...any) Response {
-	req := webClient.requestFactory.createRequest(request, httpMethod, &webClient)
+//do http request, for extracting response to struct use reponse struct pointer
+
+func (webClient WebClient) DoRequest(httpMethod HttpMethod, request *Request, responseBody ...any) Response {
+	req := webClient.requestFactory.createRequest(request, string(httpMethod), &webClient)
 	httpClient := &http.Client{}
 	response, err := httpClient.Do(req)
 	requestBodyOutput, _ := webClient.encoder.ToOutput(request.body, "", "  ")

@@ -1,5 +1,7 @@
 package webclient
 
+//representing http request struct
+
 type Request struct {
 	baseUrl     string
 	path        string
@@ -21,6 +23,12 @@ func (request Request) WithBaseUrl(baseUrl string) Request {
 func (request Request) WithPath(path string) Request {
 	request.path = path
 	return request
+}
+
+func (request Request) WithContentType(contentType ContentType) Request {
+	headers := make(map[string]string)
+	headers["Content-Type"] = string(contentType)
+	return request.WithHeaders(headers)
 }
 
 func (request Request) WithHeaders(headers map[string]string) Request {

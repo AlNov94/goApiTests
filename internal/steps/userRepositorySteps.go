@@ -6,6 +6,8 @@ import (
 	"goApiTests/internal/steps/base"
 )
 
+//database steps example
+
 type UserRepositorySteps struct{}
 
 func (UserRepositorySteps UserRepositorySteps) FindUserById(id int) entity.User {

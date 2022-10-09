@@ -3,7 +3,6 @@ package api
 import (
 	"goApiTests/internal/dto"
 	"goApiTests/internal/framework/webclient"
-	"goApiTests/internal/framework/webclient/webClientEnums"
 )
 
 type mockServiceApi struct{}
@@ -18,5 +17,5 @@ func (mockServiceApi mockServiceApi) GetMockUser(suffix string, responseBody *dt
 	queryParams := make(map[string]string)
 	queryParams["suffix"] = suffix
 	request := getBaseRequest().WithPath("/mock-user").WithQueryParams(queryParams)
-	return getBaseClient().DoRequest(webClientEnums.GET, &request, responseBody)
+	return getBaseClient().DoRequest(webclient.GET, &request, responseBody)
 }

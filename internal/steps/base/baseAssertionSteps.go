@@ -6,56 +6,58 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+//testify hard assert wrapper for allure reporting
+
 func AssertContainsStep(description string, t *testing.T, actual interface{}, expected interface{}) {
-	Step(description, func() bool {
-		return assert.Contains(t, actual, expected)
+	StepNoResult(description, func() {
+		assert.Contains(t, actual, expected)
+		AssertAll(t)
 	},
 		"actual", actual,
 		"expected", expected)
-	AssertAll(t)
 }
 
 func AssertEqualStep(description string, t *testing.T, actual interface{}, expected interface{}) {
-	Step(description, func() bool {
-		return assert.Equal(t, actual, expected)
+	StepNoResult(description, func() {
+		assert.Equal(t, actual, expected)
+		AssertAll(t)
 	},
 		"actual", actual,
 		"expected", expected)
-	AssertAll(t)
 }
 
 func AssertEqualErrorStep(description string, t *testing.T, actual error, expected string) {
-	Step(description, func() bool {
-		return assert.EqualError(t, actual, expected)
+	StepNoResult(description, func() {
+		assert.EqualError(t, actual, expected)
+		AssertAll(t)
 	},
 		"actual", actual,
 		"expected", expected)
-	AssertAll(t)
 }
 
 func AssertEqualValuesStep(description string, t *testing.T, actual interface{}, expected interface{}) {
-	Step(description, func() bool {
-		return assert.EqualValues(t, actual, expected)
+	StepNoResult(description, func() {
+		assert.EqualValues(t, actual, expected)
+		AssertAll(t)
 	},
 		"actual", actual,
 		"expected", expected)
-	AssertAll(t)
 }
 
 func AssertFalseStep(description string, t *testing.T, actual bool) {
-	Step(description, func() bool {
-		return assert.False(t, actual)
+	StepNoResult(description, func() {
+		assert.False(t, actual)
+		AssertAll(t)
 	},
 		"actual", actual,
 		"expected", false)
-	AssertAll(t)
 }
 
 func AssertTrueStep(description string, t *testing.T, actual bool) {
-	Step(description, func() bool {
-		return assert.True(t, actual)
+	StepNoResult(description, func() {
+		assert.True(t, actual)
+		AssertAll(t)
 	},
 		"actual", actual,
 		"expected", true)
-	AssertAll(t)
 }

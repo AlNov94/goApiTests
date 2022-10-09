@@ -5,6 +5,8 @@ import (
 	"github.com/inconshreveable/log15"
 )
 
+//representing http response struct
+
 type Response struct {
 	StatusCode int
 	Error      error

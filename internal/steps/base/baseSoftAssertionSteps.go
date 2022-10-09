@@ -6,6 +6,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+//testify soft assert wrapper for allure reporting
+
+// assert all soft assertions
 func AssertAll(t *testing.T) {
 	passed := assert.False(t, t.Failed())
 	if passed == false {

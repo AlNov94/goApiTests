@@ -15,13 +15,13 @@ func init() {
 }
 
 func prepareAllure() {
-	log15.Debug("<---------------------- Prepare allure")
+	log15.Debug("Prepare allure")
 	directory := getDirectory()
 	allureDirectory := directory + "/allure-results"
 	os.RemoveAll(allureDirectory)
 	os.Mkdir(allureDirectory, os.ModePerm)
 	os.Setenv("ALLURE_RESULTS_PATH", directory)
-	log15.Debug("<---------------------- Allure prepared")
+	log15.Debug("Allure prepared")
 }
 
 func getDirectory() string {

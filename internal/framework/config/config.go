@@ -9,6 +9,8 @@ import (
 	"github.com/magiconair/properties"
 )
 
+//struct for reading properties
+
 var configInstance config
 
 type config struct {

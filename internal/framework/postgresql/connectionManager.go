@@ -10,6 +10,8 @@ import (
 	"gorm.io/gorm"
 )
 
+//struct for creating connections to database
+
 type connectionManager struct {
 	dsn string
 }

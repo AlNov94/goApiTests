@@ -7,25 +7,55 @@ import (
 )
 
 func AssertContainsStep(description string, t *testing.T, actual interface{}, expected interface{}) {
-	SoftAssertContainsStep(description, assert.New(t), actual, expected)
+	Step(description, func() bool {
+		return assert.Contains(t, actual, expected)
+	},
+		"actual", actual,
+		"expected", expected)
+	AssertAll(t)
 }
 
 func AssertEqualStep(description string, t *testing.T, actual interface{}, expected interface{}) {
-	SoftAssertEqualStep(description, assert.New(t), actual, expected)
+	Step(description, func() bool {
+		return assert.Equal(t, actual, expected)
+	},
+		"actual", actual,
+		"expected", expected)
+	AssertAll(t)
 }
 
 func AssertEqualErrorStep(description string, t *testing.T, actual error, expected string) {
-	SoftAssertEqualErrorStep(description, assert.New(t), actual, expected)
+	Step(description, func() bool {
+		return assert.EqualError(t, actual, expected)
+	},
+		"actual", actual,
+		"expected", expected)
+	AssertAll(t)
 }
 
 func AssertEqualValuesStep(description string, t *testing.T, actual interface{}, expected interface{}) {
-	SoftAssertEqualValuesStep(description, assert.New(t), actual, expected)
+	Step(description, func() bool {
+		return assert.EqualValues(t, actual, expected)
+	},
+		"actual", actual,
+		"expected", expected)
+	AssertAll(t)
 }
 
 func AssertFalseStep(description string, t *testing.T, actual bool) {
-	SoftAssertFalseStep(description, assert.New(t), actual)
+	Step(description, func() bool {
+		return assert.False(t, actual)
+	},
+		"actual", actual,
+		"expected", false)
+	AssertAll(t)
 }
 
 func AssertTrueStep(description string, t *testing.T, actual bool) {
-	SoftAssertTrueStep(description, assert.New(t), actual)
+	Step(description, func() bool {
+		return assert.True(t, actual)
+	},
+		"actual", actual,
+		"expected", true)
+	AssertAll(t)
 }

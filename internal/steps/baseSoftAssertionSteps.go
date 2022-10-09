@@ -1,6 +1,17 @@
 package steps
 
-import "github.com/stretchr/testify/assert"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+func AssertAll(t *testing.T) {
+	passed := assert.False(t, t.Failed())
+	if passed == false {
+		t.FailNow()
+	}
+}
 
 func SoftAssertContainsStep(description string, assert *assert.Assertions, actual interface{}, expected interface{}) {
 	Step(description, func() bool {

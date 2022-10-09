@@ -59,6 +59,8 @@ func TestApi3(t *testing.T) {
 		var userResponse dto.UserResponse
 		mockServiceApiSteps.GetMockUserStep("1", &userResponse)
 		assertionSteps.CheckUserResponseFirstName(t, userResponse, "John")
+		assertionSteps.CheckUserResponseFirstName(t, userResponse, "Joe")
+		assertionSteps.CheckUserResponseFirstName(t, userResponse, "John")
 		log15.Info("4f")
 	})
 }

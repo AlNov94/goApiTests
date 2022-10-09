@@ -5,5 +5,4 @@ go get -u gorm.io/driver/sqlite
 
 run:
 
-rm "${GOPATH}tests\allure-results"
-go test "${GOPATH}goApiTests\tests"
+go test "${GOPATH}goApiTests\tests" -parallel 10

@@ -25,12 +25,12 @@ func GetConfig() config {
 	return configInstance
 }
 
-func (pm config) GetProperty(propertyName string) string {
-	property, ok := pm.cliArgs[propertyName]
+func (config config) GetProperty(propertyName string) string {
+	property, ok := config.cliArgs[propertyName]
 	if ok {
 		return property
 	}
-	properties, ok := pm.properties.Get(propertyName)
+	properties, ok := config.properties.Get(propertyName)
 	if !ok {
 		log15.Debug(fmt.Sprintf("Error due to reading property %s", propertyName))
 	}

@@ -2,33 +2,80 @@ package tests
 
 import (
 	"goApiTests/internal/dto"
-	"goApiTests/internal/repository"
 	"goApiTests/internal/steps"
-	"sync"
+
+	//"sync"
+	"testing"
 
 	"github.com/dailymotion/allure-go"
-	"github.com/stretchr/testify/assert"
+	"github.com/inconshreveable/log15"
 )
 
-var lock sync.Mutex = sync.Mutex{}
+// var lock sync.Mutex = sync.Mutex{}
+var mockServiceApiSteps = steps.MockServiceApiSteps{}
+var userRepositorySteps = steps.UserRepositorySteps{}
+var assertionSteps = steps.AssertionSteps{}
 
-func (suite *ApiTestSuite) TestDatabase() {
-	allure.Test(suite.T(), "database test", func() {
-		lock.Lock()
-		defer lock.Unlock()
-		assert := assert.New(suite.T())
-		user := repository.GetUserRepository().FindUserById(1)
-		assert.Equal(user.FirstName, "John")
+func TestDatabase(t *testing.T) {
+	t.Parallel()
+	allure.Test(t, "database test", func() {
+		//lock.Lock()
+		//defer lock.Unlock()
+		log15.Info("1s")
+		user := userRepositorySteps.FindUserById(1)
+		assertionSteps.CheckUserFirstName(t, user, "John")
+		log15.Info("1f")
 	})
 }
 
-func (suite *ApiTestSuite) TestApi() {
-	allure.Test(suite.T(), "api test", func() {
-		lock.Lock()
-		defer lock.Unlock()
-		assert := assert.New(suite.T())
+func TestApi(t *testing.T) {
+	t.Parallel()
+	allure.Test(t, "api test", func() {
+		//lock.Lock()
+		//defer lock.Unlock()
+		log15.Info("2s")
 		var userResponse dto.UserResponse
-		steps.GetMockUserStep("1", &userResponse)
-		assert.Equal(userResponse.FirstName, "Joe")
+		mockServiceApiSteps.GetMockUserStep("1", &userResponse)
+		assertionSteps.CheckUserResponseFirstName(t, userResponse, "John")
+		log15.Info("2f")
+	})
+}
+
+func TestApi2(t *testing.T) {
+	t.Parallel()
+	allure.Test(t, "api test", func() {
+		//lock.Lock()
+		//defer lock.Unlock()
+		log15.Info("3s")
+		var userResponse dto.UserResponse
+		mockServiceApiSteps.GetMockUserStep("1", &userResponse)
+		assertionSteps.CheckUserResponseFirstName(t, userResponse, "John")
+		log15.Info("3f")
+	})
+}
+
+func TestApi3(t *testing.T) {
+	t.Parallel()
+	allure.Test(t, "api test", func() {
+		//lock.Lock()
+		//defer lock.Unlock()
+		log15.Info("4s")
+		var userResponse dto.UserResponse
+		mockServiceApiSteps.GetMockUserStep("1", &userResponse)
+		assertionSteps.CheckUserResponseFirstName(t, userResponse, "John")
+		log15.Info("4f")
+	})
+}
+
+func TestApi4(t *testing.T) {
+	t.Parallel()
+	allure.Test(t, "api test", func() {
+		//lock.Lock()
+		//defer lock.Unlock()
+		log15.Info("5s")
+		var userResponse dto.UserResponse
+		mockServiceApiSteps.GetMockUserStep("1", &userResponse)
+		assertionSteps.CheckUserResponseFirstName(t, userResponse, "John")
+		log15.Info("5f")
 	})
 }

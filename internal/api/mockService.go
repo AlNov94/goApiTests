@@ -3,22 +3,20 @@ package api
 import (
 	"goApiTests/internal/dto"
 	"goApiTests/internal/framework/webclient"
-	"goApiTests/internal/framework/webclient/decoders"
-	"goApiTests/internal/framework/webclient/encoders"
 	"goApiTests/internal/framework/webclient/webClientEnums"
 )
 
-type mockService struct{}
+type mockServiceApi struct{}
 
-var mockServiceInstance mockService = mockService{}
+var mockServiceApiInstance mockServiceApi = mockServiceApi{}
 
-func GetMockService() mockService {
-	return mockServiceInstance
+func GetMockServiceApi() mockServiceApi {
+	return mockServiceApiInstance
 }
 
-func (ms mockService) GetMockUser(suffix string, responseBody *dto.UserResponse) webclient.Response {
+func (mockServiceApi mockServiceApi) GetMockUser(suffix string, responseBody *dto.UserResponse) webclient.Response {
 	queryParams := make(map[string]string)
 	queryParams["suffix"] = suffix
 	request := getBaseRequest().WithPath("/mock-user").WithQueryParams(queryParams)
-	return webclient.NewClient(decoders.JsonDecoder{}, encoders.JsonEncoder{}).DoRequest(webClientEnums.GET, &request, responseBody)
+	return getBaseClient().DoRequest(webClientEnums.GET, &request, responseBody)
 }

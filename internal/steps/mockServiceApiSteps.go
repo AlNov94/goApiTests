@@ -9,10 +9,12 @@ import (
 	"github.com/dailymotion/allure-go"
 )
 
-func GetMockUserStep(suffix string, responseBody *dto.UserResponse) webclient.Response {
+type MockServiceApiSteps struct{}
+
+func (mockserviceApiSteps MockServiceApiSteps) GetMockUserStep(suffix string, responseBody *dto.UserResponse) webclient.Response {
 	var result webclient.Response
 	allure.Step(fmt.Sprintf("GetMockUser call with suffix %s", suffix), func() {
-		result = api.GetMockService().GetMockUser(suffix, responseBody)
+		result = api.GetMockServiceApi().GetMockUser(suffix, responseBody)
 	})
 	return result
 }

@@ -17,6 +17,6 @@ func main() {
 	u := repository.GetUserRepository().FindUserById(1)
 	fmt.Println(u)
 	var u2 dto.UserResponse
-	api.GetMockService().GetMockUser("1", &u2)
+	api.GetMockServiceApi().GetMockUser("1", &u2)
 	fmt.Println(u2)
 }

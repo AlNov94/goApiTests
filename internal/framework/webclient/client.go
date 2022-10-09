@@ -10,31 +10,39 @@ import (
 	"github.com/inconshreveable/log15"
 )
 
-type webClient struct {
+type WebClient struct {
 	decoder        decoders.Decoder
 	encoder        encoders.Encoder
 	requestFactory requestFactory
 }
 
-func NewClient(decoder decoders.Decoder, encoder encoders.Encoder) webClient {
-	return webClient{decoder: decoder, encoder: encoder, requestFactory: getrequestFactoryInstance()}
+func NewClient(decoder decoders.Decoder, encoder encoders.Encoder) WebClient {
+	return WebClient{decoder: decoder, encoder: encoder, requestFactory: getRequestFactoryInstance()}
 }
 
-func (client webClient) DoRequest(httpMethod string, request *Request, responseBody any) Response {
-	req := client.requestFactory.createRequest(request, httpMethod, &client)
+func (webClient WebClient) DoRequest(httpMethod string, request *Request, responseBody ...any) Response {
+	req := webClient.requestFactory.createRequest(request, httpMethod, &webClient)
 	httpClient := &http.Client{}
 	response, err := httpClient.Do(req)
-	requestBodyOutput, _ := client.encoder.ToOutput(request.body, "", "  ")
+	requestBodyOutput, _ := webClient.encoder.ToOutput(request.body, "", "  ")
 	log15.Debug(fmt.Sprintf("Executed %s %s body = %s cookies = %s headers = %s", httpMethod, req.URL, requestBodyOutput, req.Cookies(), req.Header))
 	if response != nil {
-		defer response.Body.Close()
-		body, _ := io.ReadAll(response.Body)
-		client.decoder.Decode(body, &responseBody)
-		responseHeaders := client.requestFactory.headersToMap(response)
-		responseCookies := client.requestFactory.cookieToMap(response)
-		log15.Debug(fmt.Sprintf("Response status code %d body = %s headers = %v cookies = %v", response.StatusCode, string(body), responseHeaders, responseCookies))
-		return Response{StatusCode: response.StatusCode, headers: responseHeaders, cookies: responseCookies}
+		return webClient.deserializeResponse(response, responseBody...)
 	}
 	log15.Debug(err.Error())
 	return Response{StatusCode: 404, Error: err}
+}
+
+func (webClient WebClient) deserializeResponse(response *http.Response, responseBody ...any) Response {
+	body, _ := io.ReadAll(response.Body)
+	defer response.Body.Close()
+	responseHeaders := webClient.requestFactory.headersToMap(response)
+	responseCookies := webClient.requestFactory.cookieToMap(response)
+	if len(responseBody) != 0 {
+		webClient.decoder.Decode(body, &responseBody[0])
+		log15.Debug(fmt.Sprintf("Response status code %d body = %s headers = %v cookies = %v", response.StatusCode, string(body), responseHeaders, responseCookies))
+	} else {
+		log15.Debug(fmt.Sprintf("Response status code %d headers = %v cookies = %v", response.StatusCode, responseHeaders, responseCookies))
+	}
+	return Response{StatusCode: response.StatusCode, headers: responseHeaders, cookies: responseCookies}
 }

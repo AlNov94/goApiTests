@@ -10,12 +10,16 @@ var requestFactoryInstance requestFactory
 
 type requestFactory struct{}
 
-func getrequestFactoryInstance() requestFactory {
+func init() {
+	requestFactoryInstance = requestFactory{}
+}
+
+func getRequestFactoryInstance() requestFactory {
 	return requestFactoryInstance
 }
 
-func (requestFactory requestFactory) createRequest(r *Request, httpMethod string, client *webClient) *http.Request {
-	postBody, err := client.encoder.Encode(r.body)
+func (requestFactory requestFactory) createRequest(r *Request, httpMethod string, webClient *WebClient) *http.Request {
+	postBody, err := webClient.encoder.Encode(r.body)
 	if err != nil {
 		panic(err)
 	}
@@ -33,31 +37,31 @@ func (requestFactory requestFactory) createRequest(r *Request, httpMethod string
 	return req
 }
 
-func (requestFactory requestFactory) fillUrl(r *Request) string {
+func (requestFactory requestFactory) fillUrl(request *Request) string {
 	var sb strings.Builder
-	sb.WriteString(r.baseUrl + r.path)
-	l := len(r.queryParams)
+	sb.WriteString(request.baseUrl + request.path)
+	l := len(request.queryParams)
 	if l != 0 {
 		sb.WriteString("?")
 	}
-	for k, v := range r.queryParams {
+	for k, v := range request.queryParams {
 		sb.WriteString(k + "=" + v + "&")
 	}
 	return sb.String()
 }
 
-func (requestFactory requestFactory) cookieToMap(resp *http.Response) map[string]string {
+func (requestFactory requestFactory) cookieToMap(response *http.Response) map[string]string {
 	cookieMap := make(map[string]string)
-	cookies := resp.Cookies()
+	cookies := response.Cookies()
 	for i := range cookies {
 		cookieMap[cookies[i].Name] = cookies[i].Value
 	}
 	return cookieMap
 }
 
-func (requestFactory requestFactory) headersToMap(resp *http.Response) map[string][]string {
+func (requestFactory requestFactory) headersToMap(response *http.Response) map[string][]string {
 	headerMap := make(map[string][]string)
-	for name, value := range resp.Header {
+	for name, value := range response.Header {
 		headerMap[name] = value
 	}
 	return headerMap

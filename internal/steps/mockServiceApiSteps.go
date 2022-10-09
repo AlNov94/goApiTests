@@ -4,12 +4,13 @@ import (
 	"goApiTests/internal/api"
 	"goApiTests/internal/dto"
 	"goApiTests/internal/framework/webclient"
+	"goApiTests/internal/steps/base"
 )
 
 type MockServiceApiSteps struct{}
 
 func (mockserviceApiSteps MockServiceApiSteps) GetMockUserStep(suffix string, responseBody *dto.UserResponse) webclient.Response {
-	return Step("GetMockUser call",
+	return baseSteps.Step("GetMockUser call",
 		func() webclient.Response {
 			return api.GetMockServiceApi().GetMockUser(suffix, responseBody)
 		},

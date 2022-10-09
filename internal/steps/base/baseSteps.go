@@ -1,4 +1,4 @@
-package steps
+package baseSteps
 
 import (
 	"fmt"

@@ -3,7 +3,7 @@ package steps
 import (
 	"goApiTests/internal/entity"
 	"goApiTests/internal/repository"
-	"goApiTests/internal/steps/base"
+	baseSteps "goApiTests/internal/steps/base"
 )
 
 //database steps example
@@ -15,5 +15,5 @@ func (UserRepositorySteps UserRepositorySteps) FindUserById(id int) entity.User 
 		func() entity.User {
 			return repository.GetUserRepository().FindUserById(id)
 		},
-		"id", id)
+		baseSteps.Parameter{Name: "id", Value: id})
 }

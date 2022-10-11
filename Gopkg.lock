@@ -101,13 +101,9 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:a355004ce10aa083bf8e75ca188a147d24b60997d2bf1e5d7a8e396011f24819"
+  digest = "1:47b565d873ecca0f809610cd107995a41eb8a349c434c2e7cabd547a8f6fb1e5"
   name = "github.com/stretchr/testify"
-  packages = [
-    "assert",
-    "require",
-    "suite",
-  ]
+  packages = ["assert"]
   pruneopts = "UT"
   revision = "48391ba5eb8c5f49132138e67ec112d180b88f63"
   version = "v1.7.4"
@@ -139,7 +135,6 @@
     "github.com/inconshreveable/log15",
     "github.com/magiconair/properties",
     "github.com/stretchr/testify/assert",
-    "github.com/stretchr/testify/suite",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

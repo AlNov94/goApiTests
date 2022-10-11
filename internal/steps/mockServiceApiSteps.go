@@ -4,7 +4,7 @@ import (
 	"goApiTests/internal/api"
 	"goApiTests/internal/dto"
 	"goApiTests/internal/framework/webclient"
-	"goApiTests/internal/steps/base"
+	baseSteps "goApiTests/internal/steps/base"
 )
 
 //api steps example
@@ -16,5 +16,5 @@ func (mockserviceApiSteps MockServiceApiSteps) GetMockUserStep(suffix string, re
 		func() webclient.Response {
 			return api.GetMockServiceApi().GetMockUser(suffix, responseBody)
 		},
-		"suffix", suffix)
+		baseSteps.Parameter{Name: "suffix", Value: suffix})
 }

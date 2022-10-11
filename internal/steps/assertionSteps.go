@@ -3,7 +3,7 @@ package steps
 import (
 	"goApiTests/internal/dto"
 	"goApiTests/internal/entity"
-	"goApiTests/internal/steps/base"
+	baseSteps "goApiTests/internal/steps/base"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -20,8 +20,9 @@ func (assertionSteps AssertionSteps) CheckUserFirstName(t *testing.T, user entit
 func (assertionSteps AssertionSteps) CheckUserResponseFirstName(t *testing.T, user dto.UserResponse, expectedName string) {
 	baseSteps.StepNoResult("Check user response",
 		func() {
-			assert := assert.New(t)
-			baseSteps.SoftAssertEqualStep("Check get user response first name", assert, user.FirstName, expectedName)
+			assert.Equal(t, user.FirstName, expectedName)
 			baseSteps.AssertAll(t)
-		})
+		},
+		baseSteps.Parameter{Name: "expectedName", Value: expectedName},
+		baseSteps.Parameter{Name: "actualsUser", Value: user})
 }

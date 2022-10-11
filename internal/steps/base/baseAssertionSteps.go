@@ -13,8 +13,8 @@ func AssertContainsStep(description string, t *testing.T, actual interface{}, ex
 		assert.Contains(t, actual, expected)
 		AssertAll(t)
 	},
-		"actual", actual,
-		"expected", expected)
+		Parameter{"actual", actual},
+		Parameter{"expected", expected})
 }
 
 func AssertEqualStep(description string, t *testing.T, actual interface{}, expected interface{}) {
@@ -22,8 +22,8 @@ func AssertEqualStep(description string, t *testing.T, actual interface{}, expec
 		assert.Equal(t, actual, expected)
 		AssertAll(t)
 	},
-		"actual", actual,
-		"expected", expected)
+		Parameter{"actual", actual},
+		Parameter{"expected", expected})
 }
 
 func AssertEqualErrorStep(description string, t *testing.T, actual error, expected string) {
@@ -31,8 +31,8 @@ func AssertEqualErrorStep(description string, t *testing.T, actual error, expect
 		assert.EqualError(t, actual, expected)
 		AssertAll(t)
 	},
-		"actual", actual,
-		"expected", expected)
+		Parameter{"actual", actual},
+		Parameter{"expected", expected})
 }
 
 func AssertEqualValuesStep(description string, t *testing.T, actual interface{}, expected interface{}) {
@@ -40,8 +40,8 @@ func AssertEqualValuesStep(description string, t *testing.T, actual interface{},
 		assert.EqualValues(t, actual, expected)
 		AssertAll(t)
 	},
-		"actual", actual,
-		"expected", expected)
+		Parameter{"actual", actual},
+		Parameter{"expected", expected})
 }
 
 func AssertFalseStep(description string, t *testing.T, actual bool) {
@@ -49,8 +49,8 @@ func AssertFalseStep(description string, t *testing.T, actual bool) {
 		assert.False(t, actual)
 		AssertAll(t)
 	},
-		"actual", actual,
-		"expected", false)
+		Parameter{"actual", actual},
+		Parameter{"expected", false})
 }
 
 func AssertTrueStep(description string, t *testing.T, actual bool) {
@@ -58,6 +58,6 @@ func AssertTrueStep(description string, t *testing.T, actual bool) {
 		assert.True(t, actual)
 		AssertAll(t)
 	},
-		"actual", actual,
-		"expected", true)
+		Parameter{"actual", actual},
+		Parameter{"expected", true})
 }

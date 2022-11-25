@@ -4,7 +4,7 @@ import (
 	"goApiTests/internal/api"
 	"goApiTests/internal/dto"
 	"goApiTests/internal/framework/webclient"
-	baseSteps "goApiTests/internal/steps/base"
+	"goApiTests/internal/steps/base"
 )
 
 //api steps example

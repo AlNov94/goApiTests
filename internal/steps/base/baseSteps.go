@@ -19,7 +19,7 @@ func Step[T any](description string, action func() T, stepParameters ...Paramete
 
 //allure.Step wrapper for functions without returning types and custom step parameters
 
-func StepNoResult(description string, action func(), stepParameters ...Parameter) {
+func StepNoReturn(description string, action func(), stepParameters ...Parameter) {
 	allure.StepWithParameter(description, getStepParameters(stepParameters...), func() {
 		action()
 	})

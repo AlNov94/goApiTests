@@ -18,7 +18,7 @@ func (assertionSteps AssertionSteps) CheckUserFirstName(t *testing.T, user entit
 
 // soft assert example
 func (assertionSteps AssertionSteps) CheckUserResponseFirstName(t *testing.T, user dto.UserResponse, expectedName string) {
-	baseSteps.StepNoResult("Check user response",
+	baseSteps.StepNoReturn("Check user response",
 		func() {
 			assert.Equal(t, user.FirstName, expectedName)
 			baseSteps.AssertAll(t)

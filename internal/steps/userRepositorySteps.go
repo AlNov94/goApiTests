@@ -3,7 +3,7 @@ package steps
 import (
 	"goApiTests/internal/entity"
 	"goApiTests/internal/repository"
-	baseSteps "goApiTests/internal/steps/base"
+	"goApiTests/internal/steps/base"
 )
 
 //database steps example

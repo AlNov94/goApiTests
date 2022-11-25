@@ -9,7 +9,7 @@ import (
 //testify hard assert wrapper for allure reporting
 
 func AssertContainsStep(description string, t *testing.T, actual interface{}, expected interface{}) {
-	StepNoResult(description, func() {
+	StepNoReturn(description, func() {
 		assert.Contains(t, actual, expected)
 		AssertAll(t)
 	},
@@ -18,7 +18,7 @@ func AssertContainsStep(description string, t *testing.T, actual interface{}, ex
 }
 
 func AssertEqualStep(description string, t *testing.T, actual interface{}, expected interface{}) {
-	StepNoResult(description, func() {
+	StepNoReturn(description, func() {
 		assert.Equal(t, actual, expected)
 		AssertAll(t)
 	},
@@ -27,7 +27,7 @@ func AssertEqualStep(description string, t *testing.T, actual interface{}, expec
 }
 
 func AssertEqualErrorStep(description string, t *testing.T, actual error, expected string) {
-	StepNoResult(description, func() {
+	StepNoReturn(description, func() {
 		assert.EqualError(t, actual, expected)
 		AssertAll(t)
 	},
@@ -36,7 +36,7 @@ func AssertEqualErrorStep(description string, t *testing.T, actual error, expect
 }
 
 func AssertEqualValuesStep(description string, t *testing.T, actual interface{}, expected interface{}) {
-	StepNoResult(description, func() {
+	StepNoReturn(description, func() {
 		assert.EqualValues(t, actual, expected)
 		AssertAll(t)
 	},
@@ -45,7 +45,7 @@ func AssertEqualValuesStep(description string, t *testing.T, actual interface{},
 }
 
 func AssertFalseStep(description string, t *testing.T, actual bool) {
-	StepNoResult(description, func() {
+	StepNoReturn(description, func() {
 		assert.False(t, actual)
 		AssertAll(t)
 	},
@@ -54,7 +54,7 @@ func AssertFalseStep(description string, t *testing.T, actual bool) {
 }
 
 func AssertTrueStep(description string, t *testing.T, actual bool) {
-	StepNoResult(description, func() {
+	StepNoReturn(description, func() {
 		assert.True(t, actual)
 		AssertAll(t)
 	},
